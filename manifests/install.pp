@@ -1,4 +1,6 @@
 # == Class: gitolite3::install
+#
+# Install class for gitolite3
 class gitolite3::install inherits gitolite3 {
 
   if $gitolite3::manage_package {

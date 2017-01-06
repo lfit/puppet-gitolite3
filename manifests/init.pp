@@ -1,3 +1,6 @@
+# == Class: gitolite3
+#
+# Main gitolite3 init class
 class gitolite3 (
   Boolean $manage_package = $gitolite3::params::manage_package,
   String  $package_name   = $gitolite3::params::package_name,
