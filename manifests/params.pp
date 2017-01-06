@@ -8,5 +8,5 @@ class gitolite3::params {
   $homedir        = '/var/lib/gitolite3'
   $username       = 'gitolite3'
   $groupname      = 'gitolite3'
-  $install_cmd    = '/usr/bin/gitolite3 setup -pk'
+  $install_cmd    = '/bin/gitolite setup -pk'
 }
