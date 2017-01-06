@@ -1,0 +1,2 @@
+---
+gitolite3::admin_key_content: 'ssh-rsa AAAAFOOBAR foo@bar.baz'

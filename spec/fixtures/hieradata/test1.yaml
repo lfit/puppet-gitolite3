@@ -1,0 +1,48 @@
+---
+gitolite3::package_name: 'gitolite'
+gitolite3::install_cmd: '/sbin/test setup -foobar'
+gitolite3::admin_key_content: 'ssh-rsa AAAABAZQUUX foo@bar.baz'
+gitolite3::config::umask: '0022'
+gitolite3::config::git_config_keys: '.*'
+gitolite3::config::log_dest: 'syslog,normal'
+gitolite3::config::roles:
+  'OWNERS': 1
+  'READERS': 1
+  'WRITERS': 1
+gitolite3::config::site_info: 'see https://example.com/gitolite'
+gitolite3::config::hostname: 'testhost'
+gitolite3::config::local_code: '$ENV{GL_ADMIN_BASE}/local'
+gitolite3::config::repo_aliases:
+  'foo/bar': 'baz/quux'
+  'baz/quuz': 'fue/loco'
+gitolite3::config::repo_aliases_warning: 'repos have changed'
+gitolite3::config::repo_aliases_pfx_maps:
+  'var/lib/': 'srv/lib/'
+gitolite3::config::trigger_input:
+  - 'test_input_1'
+  - 'test_input_2'
+gitolite3::config::trigger_access_1:
+  - 'test_access_1_1'
+  - 'test_access_1_2'
+gitolite3::config::trigger_access_2:
+  - 'test_access_2_1'
+  - 'test_access_2_2'
+gitolite3::config::trigger_pre_git:
+  - 'test_pre_git_1'
+  - 'test_pre_git_2'
+gitolite3::config::trigger_post_git:
+  - 'test_post_git_1'
+  - 'test_post_git_2'
+gitolite3::config::trigger_pre_create:
+  - 'test_pre_create_1'
+  - 'test_pre_create_2'
+gitolite3::config::trigger_post_create:
+  - 'test_post_create_1'
+  - 'test_post_create_2'
+gitolite3::config::trigger_post_compile:
+  - 'test_post_compile_1'
+  - 'test_post_compile_2'
+gitolite3::config::enable:
+  - 'git-config'
+  - 'ssh-authkeys'
+gitolite3::config::unsafe_patt: '[`#\;\$\&()|<>]'

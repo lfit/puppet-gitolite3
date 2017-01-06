@@ -1,0 +1,118 @@
+# .gitolite.rc: Managed by puppet.
+
+%RC = (
+    UMASK                           =>  <%= @umask %>,
+    GIT_CONFIG_KEYS                 =>  '<%= @git_config_keys %>',
+    LOG_EXTRA                       =>  <%= @log_extra %>,
+<% if @log_dest -%>
+    LOG_DEST                        => '<%= @log_dest %>',
+<% end -%>
+<% if @writer_can_update_desc -%>
+    WRITER_CAN_UPDATE_DESC          => 1,
+<% end -%>
+<% if @shell_users_list -%>
+    SHELL_USERS_LIST                => '<%= @shell_users_list %>',
+<% end -%>
+    ROLES => {
+<% @roles.keys.sort.each do |myrole| -%>
+        <%= myrole %> => <%= @roles[myrole] %>,
+<% end -%>
+    },
+<% if @site_info -%>
+    SITE_INFO                       => '<%= @site_info %>',
+<% end -%>
+<% if @hostname -%>
+    HOSTNAME                        => '<%= @hostname %>',
+<% end -%>
+<% if @local_code -%>
+    LOCAL_CODE                      => "<%= @local_code %>",
+<% end -%>
+<% if @repo_aliases -%>
+    REPO_ALIASES => {
+<% if @repo_aliases_warning -%>
+        WARNING => q(<%= @repo_aliases_warning %>),
+<% end -%>
+<% if @repo_aliases_pfx_maps -%>
+        PREFIX_MAPS => {
+<% @repo_aliases_pfx_maps.keys.sort.each do |mysrc| -%>
+            '<%= mysrc %>' => '<%= @repo_aliases_pfx_maps[mysrc] %>',
+<% end -%>
+        },
+<% end -%>
+<% @repo_aliases.keys.sort.each do |mysrc| -%>
+        '<%= mysrc %>' => '<%= @repo_aliases[mysrc] %>',
+<% end -%>
+    },
+<% end -%>
+
+<% if @trigger_input -%>
+    INPUT => [
+<% @trigger_input.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+<% if @trigger_access_1 -%>
+    ACCESS_1 => [
+<% @trigger_access_1.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+<% if @trigger_access_2 -%>
+    ACCESS_2 => [
+<% @trigger_access_2.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+<% if @trigger_pre_git -%>
+    PRE_GIT => [
+<% @trigger_pre_git.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+<% if @trigger_post_git -%>
+    POST_GIT => [
+<% @trigger_post_git.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+<% if @trigger_pre_create -%>
+    PRE_CREATE => [
+<% @trigger_pre_create.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+<% if @trigger_post_create -%>
+    POST_CREATE => [
+<% @trigger_post_create.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+<% if @trigger_post_compile -%>
+    POST_COMPILE => [
+<% @trigger_post_compile.each do |entry| -%>
+        '<%= entry %>',
+<% end -%>
+    ],
+<% end -%>
+
+    ENABLE => [
+<% @enable.each do |myenable| -%>
+        '<%= myenable %>',
+<% end -%>
+    ],
+
+);
+
+<% if @unsafe_patt -%>
+$UNSAFE_PATT = qr(<%= @unsafe_patt %>);
+<% end -%>
+# ------------------------------------------------------------------------------
+# per perl rules, this should be the last line in such a file:
+1;
