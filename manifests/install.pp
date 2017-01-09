@@ -11,6 +11,30 @@ class gitolite3::install inherits gitolite3 {
     )
   }
 
+  if $gitolite3::repodir_path {
+    if $gitolite3::repodir_mode {
+      $repodir_mode = $gitolite3::repodir_mode
+    } else {
+      $repodir_mode = '0755'
+    }
+    file { 'gitolite3-repo-canonical':
+      ensure => directory,
+      path   => $gitolite3::repodir_path,
+      owner  => $gitolite3::username,
+      group  => $gitolite3::groupname,
+      mode   => $repodir_mode,
+    }
+    file { 'gitolite3-repo-symlink':
+      ensure  => link,
+      path    => "${gitolite3::homedir}/repositories",
+      target  => $gitolite3::repodir_path,
+      owner   => $gitolite3::username,
+      group   => $gitolite3::groupname,
+      require => File['gitolite3-repo-canonical'],
+      before  => Exec['gitolite3-setup'],
+    }
+  }
+
   file { "${gitolite3::homedir}/admin.pub":
     ensure  => file,
     source  => $gitolite3::admin_key_source,

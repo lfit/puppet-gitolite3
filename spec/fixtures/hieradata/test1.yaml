@@ -1,6 +1,8 @@
 ---
 gitolite3::package_name: 'gitolite'
 gitolite3::install_cmd: '/sbin/test setup -foobar'
+gitolite3::repodir_path: '/var/lib/git/gl-repos'
+gitolite3::repodir_mode: '0770'
 gitolite3::admin_key_content: 'ssh-rsa AAAABAZQUUX foo@bar.baz'
 gitolite3::config::umask: '0022'
 gitolite3::config::git_config_keys: '.*'

@@ -7,6 +7,11 @@ class gitolite3 (
   Enum['present', 'absent', 'installed', 'latest']
           $package_ensure = $gitolite3::params::package_ensure,
 
+  Optional[Pattern['^\/']]
+          $repodir_path   = $gitolite3::params::repodir_path,
+  Optional[Pattern['^\d+']]
+          $repodir_mode   = $gitolite3::params::repodir_mode,
+
   Pattern['^\/'] $homedir     = $gitolite3::params::homedir,
   String         $username    = $gitolite3::params::username,
   String         $groupname   = $gitolite3::params::groupname,

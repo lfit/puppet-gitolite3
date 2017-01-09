@@ -30,6 +30,15 @@ describe 'gitolite3', :type => 'class' do
       it { should contain_exec('gitolite3-setup')
            .with_command('/sbin/test setup -foobar admin.pub')
       }
+      it { should contain_file('gitolite3-repo-canonical')
+           .with_path('/var/lib/git/gl-repos')
+           .with_mode('0770')
+      }
+      it { should contain_file('gitolite3-repo-symlink')
+           .with_ensure('link')
+           .with_path('/var/lib/gitolite3/repositories')
+           .with_target('/var/lib/git/gl-repos')
+      }
       # Test main config items
       it { should contain_file('/var/lib/gitolite3/.gitolite.rc')
            .with_content(/UMASK\s*=>\s*0022/)
