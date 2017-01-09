@@ -25,10 +25,6 @@ class gitolite3 (
     fail 'Parameters `admin_key_source` and `admin_key_content` are mutually exclusive'
   }
 
-  if ! ($admin_key_source or $admin_key_content) {
-    fail 'Must specify either `admin_key_source` or `admin_key_content`'
-  }
-
   anchor { "${module_name}::begin": } ->
   class { "${module_name}::install": } ->
   class { "${module_name}::config": } ->

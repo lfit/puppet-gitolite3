@@ -5,7 +5,7 @@ class gitolite3::params {
   $manage_package = true
   $package_name   = 'gitolite3'
   $package_ensure = 'installed'
-  # If $repo_path is defined, it will be set up as the canonical location
+  # If $repodir_path is defined, it will be set up as the canonical location
   # for gitolite-managed git repositories, and symlinked into
   # $GITOLITE_HOME/repositories. Note, that you *may* run into troubles
   # with hooks, paths, alternates, etc, if you choose to go down this route,
